@@ -1,7 +1,13 @@
-﻿  aBehaviorController.cpp
-  aBehaviors.cpp
-  Generating Code...
-  libassignment5.vcxproj -> D:\MyHomeWork\HW9_BehavioralAnimation\HW9 - AnimationToolkit - 2017\libsrc\animation\..\..\lib\libassignment5d.lib
+﻿  aBehaviors.cpp
+aBehaviors.cpp(256): warning C4018: “<”: 有符号/无符号不匹配
+aBehaviors.cpp(450): warning C4018: “<”: 有符号/无符号不匹配
+aBehaviors.cpp(509): warning C4018: “<”: 有符号/无符号不匹配
+aBehaviors.cpp(565): warning C4018: “<”: 有符号/无符号不匹配
+aBehaviors.cpp(618): warning C4018: “<”: 有符号/无符号不匹配
+aBehaviors.cpp(629): warning C4018: “<”: 有符号/无符号不匹配
+aBehaviors.cpp(649): warning C4018: “<”: 有符号/无符号不匹配
+aBehaviors.cpp(733): warning C4018: “<”: 有符号/无符号不匹配
+  libassignment5.vcxproj -> D:\cis562\hw9-behavioral-animation-LanLou123\HW9 - AnimationToolkit - 2017\libsrc\animation\..\..\lib\libassignment5d.lib
   aActor.h
   aBehaviorController.h
   aBehaviors.h

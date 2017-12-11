@@ -3,13 +3,13 @@
   aFBX.cpp
   aImage.cpp
   aSceneCache.cpp
-D:\MyHomeWork\HW9_BehavioralAnimation\HW9 - AnimationToolkit - 2017\3rdparty\FBX.SDK.2014.2\include\fbxsdk/core/math/fbxmath.h(188): warning C4244: 'return': conversion from 'double' to 'fbxsdk_2014_2::FbxFloat', possible loss of data
+D:\cis562\hw9-behavioral-animation-LanLou123\HW9 - AnimationToolkit - 2017\3rdparty\FBX.SDK.2014.2\include\fbxsdk/core/math/fbxmath.h(188): warning C4244: “return”: 从“double”转换到“fbxsdk_2014_2::FbxFloat”，可能丢失数据
   aSceneDrawer.cpp
   aTimer.cpp
   aWin32Utils.cpp
-aWin32Utils.cpp(186): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'const std::string'
-  Generating Code...
-  libui.vcxproj -> D:\MyHomeWork\HW9_BehavioralAnimation\HW9 - AnimationToolkit - 2017\libsrc\ui\..\..\lib\libuid.lib
+aWin32Utils.cpp(186): warning C4477: “printf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“const std::string”
+  正在生成代码...
+  libui.vcxproj -> D:\cis562\hw9-behavioral-animation-LanLou123\HW9 - AnimationToolkit - 2017\libsrc\ui\..\..\lib\libuid.lib
   aBasicViewer.h
   aCamera.h
   aFBX.h

@@ -1,9 +1,9 @@
 ﻿  aFireworks.cpp
-aFireworks.cpp(200): warning C4101: 'pRocket': unreferenced local variable
+aFireworks.cpp(200): warning C4101: “pRocket”: 未引用的局部变量
   aJitter.cpp
   aParticle.cpp
   aParticleSystem.cpp
   aRocket.cpp
   aSpark.cpp
-  Generating Code...
-  libassignment4.vcxproj -> D:\MyHomeWork\HW9_BehavioralAnimation\HW9 - AnimationToolkit - 2017\libsrc\animation\..\..\lib\libassignment4d.lib
+  正在生成代码...
+  libassignment4.vcxproj -> D:\cis562\hw9-behavioral-animation-LanLou123\HW9 - AnimationToolkit - 2017\libsrc\animation\..\..\lib\libassignment4d.lib

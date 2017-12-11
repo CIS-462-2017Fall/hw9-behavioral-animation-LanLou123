@@ -154,7 +154,9 @@ void BehaviorController::control(double deltaT)
 	{ 
 		m_Vdesired = mpActiveBehavior->calcDesiredVel(this);
 		m_Vdesired[1] = 0;
-
+		gVelKv = 10.0f;
+		gOriKv = 2.0f * 1.0f * 16.0f;
+		gOriKp = 16.0f * 16.0f;
 		//  force and torque inputs are computed from vd and thetad as follows:
 		//              Velocity P controller : force = mass * Kv * (vd - v)
 		//              Heading PD controller : torque = Inertia * (-Kv * thetaDot -Kp * (thetad - theta))
@@ -162,12 +164,23 @@ void BehaviorController::control(double deltaT)
 
 		// TODO: insert your code here to compute m_force and m_torque
 
-
-
-
-
-
-
+		double vd = m_Vdesired.Length();
+		double v = m_VelB.Length();
+		m_vd = vd;
+		m_force = vec3(0.0f, 0.0f, 1.0f) * gMass * gVelKv * (vd - v);
+		if (m_force.Length() > gMaxForce)
+		{
+			m_force = m_force / m_force.Length() * gMaxForce;
+		}
+		double thetad;
+		thetad = atan2(m_Vdesired[0], m_Vdesired[2]);
+		double thetaD = (thetad - m_Euler[1]);
+		ClampAngle(thetaD);
+		m_torque = vec3(0.0f, 1.0f, 0.0f) * gInertia * (-gOriKv * m_AVelB[1] + gOriKp * thetaD);
+		if (m_torque.Length() > gMaxTorque)
+		{
+			m_torque = m_torque / m_torque.Length() * gMaxTorque;
+		}
 
 
 
@@ -211,7 +224,16 @@ void BehaviorController::computeDynamics(vector<vec3>& state, vector<vec3>& cont
 
 	// Compute the stateDot vector given the values of the current state vector and control input vector
 	// TODO: add your code here
-
+	double thetay = state[1][1];
+	vec3 angular_velocity = state[3];
+	vec3 acceleration = force / gMass;
+	vec3 angular_acceleration = torque / gInertia;
+	mat3 local2world;
+	local2world.FromEulerAngles(mat3::RotOrder::XYZ, vec3(0.0, state[1][1], 0.0));
+	stateDot[0] = local2world * state[2];
+	stateDot[1] = vec3(0., state[3][1], 0.);
+	stateDot[2] = acceleration;
+	stateDot[3] = angular_acceleration;
 
 
 
@@ -225,7 +247,11 @@ void BehaviorController::updateState(float deltaT, int integratorType)
 
 	// TODO: add your code here
 	
-
+	m_state[0] = m_state[0] + deltaT * m_stateDot[0];
+	m_state[1] = m_state[1] + deltaT * m_stateDot[1];
+	ClampAngle(m_state[1][1]);
+	m_state[2] = m_state[2] + deltaT * m_stateDot[2];
+	m_state[3] = m_state[3] + deltaT * m_stateDot[3];
 
 
 
@@ -240,9 +266,18 @@ void BehaviorController::updateState(float deltaT, int integratorType)
 
 	//  Perform validation check to make sure all values are within MAX values
 	// TODO: add your code here
-
-
-
+	m_Vel0 = m_stateDot[0];
+	if (m_state[2].Length() > gMaxSpeed) 
+	{
+		m_state[2] = m_state[2] / m_state[2].Length() * gMaxSpeed;
+		m_VelB = m_state[2];
+		m_Vel0 = m_Vel0 / m_Vel0.Length() * gMaxSpeed;
+	}
+	if (m_state[3].Length() > gMaxAngularSpeed) 
+	{
+		m_state[3] = m_state[3] / m_state[3].Length() * gMaxAngularSpeed;
+		m_AVelB = m_state[3];
+	}
 
 
 
